@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import styles from "../styles/Home.module.css";
 import { Experience, PageInfo, Skill, Project, Social } from "../typings";
-import { pageInfo, experiences, skills, projects, socials } from "../content/data";
+import { pageInfo, experiences, skills, projects, socials, BASE } from "../content/data";
 import About from "../components/About";
 import WorkExperience from "../components/WorkExperience";
 import Skills from "../components/Skills";
@@ -28,24 +28,8 @@ const Home = ({ pageInfo, experiences, projects, skills, socials }: Props) => {
     overflow-y-scroll overflow-x-hidden z-0 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-darkGreen/80"
     >
       <Head>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="icon" type="image/svg+xml" href={`${BASE}/favicon.svg`} />
+        <link rel="manifest" href={`${BASE}/site.webmanifest`} />
         <title>{`${pageInfo.name} | Portfolio`}</title>
       </Head>
 

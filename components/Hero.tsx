@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { PageInfo } from "../typings";
-import { heroWords } from "../content/data";
+import { heroWords, resumeUrl } from "../content/data";
 import BackgroundCircles from "./BackgroundCircles";
 
 type Props = { pageInfo: PageInfo };
@@ -46,6 +46,9 @@ export default function Hero({ pageInfo }: Props) {
           <Link href="#projects">
             <button className="heroButton">Projects</button>
           </Link>
+          <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+            <button className="heroButton">Resume</button>
+          </a>
         </div>
       </div>
     </div>

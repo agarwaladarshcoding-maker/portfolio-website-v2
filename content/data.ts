@@ -8,7 +8,34 @@ import {
 } from "../typings";
 
 // Photos/logos/tech icons are still placeholders: drop files in public/images and update the paths.
-const PLACEHOLDER = "/images/placeholder.svg";
+export const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const PLACEHOLDER = `${BASE}/images/placeholder.svg`;
+
+export const resumeUrl = "https://know-about-adarsh.vercel.app/adarsh-agarwala-resume.pdf";
+
+// Tech icons come from the devicon CDN; unknown names fall back to the placeholder.
+const DEVICON: Record<string, string> = {
+  python: "python/python-original",
+  pytorch: "pytorch/pytorch-original",
+  "c++": "cplusplus/cplusplus-original",
+  typescript: "typescript/typescript-original",
+  react: "react/react-original",
+  "node-js": "nodejs/nodejs-original",
+  mongodb: "mongodb/mongodb-original",
+  express: "express/express-original",
+  electron: "electron/electron-original",
+  fastapi: "fastapi/fastapi-original",
+  redis: "redis/redis-original",
+  pandas: "pandas/pandas-original",
+  "scikit-learn": "scikitlearn/scikitlearn-original",
+};
+const icon = (title: string) => {
+  const key = title.toLowerCase().replace(/[^a-z0-9+]+/g, "-");
+  const path = DEVICON[key];
+  return path
+    ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${path}.svg`
+    : PLACEHOLDER;
+};
 
 export const pageInfo: PageInfo = {
   name: "Adarsh Agarwala",
@@ -37,14 +64,14 @@ export const socials: Social[] = [
 const tech = (title: string): Technology => ({
   _id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
   title,
-  image: PLACEHOLDER,
+  image: icon(title),
 });
 
 // progress values are rough self-ratings, adjust freely.
 const skill = (title: string, progress: number): Skill => ({
   _id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
   title,
-  image: PLACEHOLDER,
+  image: icon(title),
   progress,
 });
 
