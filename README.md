@@ -15,4 +15,4 @@ npm run dev
 
 ## Deploy
 
-Static export: `npm run build && npx next export` (outputs `out/`). For a sub-path host such as GitHub Pages set `NEXT_PUBLIC_BASE_PATH=/portfolio-website-v2` before building. On Vercel, no env var is needed.
+Deployed on Vercel at https://know-about-adarsh.vercel.app (project `know-about-adarsh`). Deploy with `vercel deploy --prod`. No env vars are needed.
