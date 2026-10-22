@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import Link from "next/link";
 import React from "react";
 import { SocialIcon } from "react-social-icons";
 import { Social } from "../typings";
@@ -38,7 +37,7 @@ export default function Header({ socials }: Props) {
         ))}
       </motion.div>
 
-      <Link href="#contact">
+      <div>
         <motion.div
           initial={{
             x: 500,
@@ -57,15 +56,19 @@ export default function Header({ socials }: Props) {
         >
           <SocialIcon
             className="cursor-pointer"
+            url="#contact"
             network="email"
             fgColor="grey"
             bgColor="transparent"
           />
-          <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
+          <a
+            href="#contact"
+            className="uppercase hidden md:inline-flex text-sm text-gray-400"
+          >
             Get in touch
-          </p>
+          </a>
         </motion.div>
-      </Link>
+      </div>
     </header>
   );
 }

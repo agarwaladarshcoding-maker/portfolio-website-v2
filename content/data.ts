@@ -34,14 +34,21 @@ const icon = (title: string) => {
   const path = DEVICON[key];
   return path
     ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${path}.svg`
-    : PLACEHOLDER;
+    : badge(title);
+};
+
+// Fallback for technologies with no devicon logo: an initials badge.
+const badge = (title: string) => {
+  const letters = title.replace(/[^A-Za-z0-9+]/g, "").slice(0, 2).toUpperCase();
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="#2C6975"/><text x="40" y="50" font-family="Helvetica,Arial,sans-serif" font-size="30" font-weight="700" fill="#F8F8F8" text-anchor="middle">${letters}</text></svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 };
 
 export const pageInfo: PageInfo = {
   name: "Adarsh Agarwala",
   role: "Full Stack AI/ML Engineer",
-  heroImage: PLACEHOLDER,
-  profilePic: PLACEHOLDER,
+  heroImage: `${BASE}/images/hero.jpg`,
+  profilePic: `${BASE}/images/profile.jpg`,
   backgroundInformation: "I like to code and I figure things out. I'm addicted to coffee for that extra dash of energy.",
   phoneNumber: "+91 6296399690",
   email: "agarwalaadarsh.work@gmail.com",
@@ -78,7 +85,7 @@ const skill = (title: string, progress: number): Skill => ({
 export const skills: Skill[] = [
   skill("Python", 90),
   skill("PyTorch", 75),
-  skill("RAG / LLM Agents", 80),
+  skill("Pandas", 80),
   skill("C++", 80),
   skill("TypeScript", 70),
   skill("React", 75),
@@ -128,56 +135,105 @@ export const experiences: Experience[] = [
   },
 ];
 
-const GH = "https://github.com/agarwaladarshcoding-maker";
-
 export const projects: Project[] = [
+  {
+    _id: "haqdaar",
+    title: "Haqdaar",
+    linkToBuild: "https://github.com/agarwaladarshcoding-maker/haqdaar-v3",
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/haqdaar-v3",
+    image: `${BASE}/images/projects/haqdaar.svg`,
+    summary:
+      "A phone helpline that tells people which Indian government schemes they are entitled to. Callers speak in their own language or use the keypad, answer a handful of questions and hear the schemes they qualify for. They can also send a photo of a crop or document by SMS, and missed calls get the answer back as an SMS with text and a sound link. Built for people with feature phones: no app, no internet, no reading. Scheme content is read verbatim from a database so the model never invents a benefit.",
+    technologies: [tech("Python"), tech("FastAPI"), tech("Twilio"), tech("Supabase")],
+  },
   {
     _id: "medical-rag",
     title: "Evidence-Aware Medical RAG",
     linkToBuild: "https://medical-rag-demo.vercel.app/",
-    sourceLink: `${GH}/Advanced-Medical-Based-RAG-System`,
-    image: PLACEHOLDER,
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/Advanced-Medical-Based-RAG-System",
+    image: `${BASE}/images/projects/medical-rag.svg`,
     summary:
-      "A local-first medical RAG pipeline that answers only from its documents, then splits its own answer into atomic claims and labels each SUPPORTED, WEAK, UNSUPPORTED or CONTRADICTED against the retrieved passages using an NLI model. 96 tests, no data leaves the machine.",
+      "Medical QA that splits its own answer into individual claims and verifies each against the retrieved passages, labelling them SUPPORTED, WEAK, UNSUPPORTED or CONTRADICTED. Hybrid BM25 + dense retrieval, rank fusion, reranking, per-claim source attribution and a refusal guardrail. Local-first, 96 tests.",
     technologies: [tech("Python"), tech("PyTorch"), tech("ChromaDB"), tech("BM25")],
   },
   {
     _id: "agentwatch",
-    title: "AgentWatch",
-    linkToBuild: `${GH}/AgentWatcher`,
-    sourceLink: `${GH}/AgentWatcher`,
-    image: PLACEHOLDER,
+    title: "AgentWatcher",
+    linkToBuild: "https://github.com/agarwaladarshcoding-maker/AgentWatcher",
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/AgentWatcher",
+    image: `${BASE}/images/projects/agentwatch.svg`,
     summary:
-      "A macOS monitor that intercepts CLI AI tools in real time and classifies their activity into 7 states with a TF-IDF + LinearSVC model at ~99% accuracy, replacing brittle regex rules.",
+      "Mirrors a CLI coding agent's terminal byte-for-byte inside a PTY, then layers on state annotations and a permission control plane that answers the agent's own y/n prompts with a logged verdict. A TF-IDF + LinearSVC classifier labels seven activity states at ~99% accuracy.",
     technologies: [tech("Electron"), tech("TypeScript"), tech("scikit-learn")],
   },
   {
     _id: "amber-copilot",
-    title: "amber Copilot",
-    linkToBuild: `${GH}/Amber-Student-Chatbot`,
-    sourceLink: `${GH}/Amber-Student-Chatbot`,
-    image: PLACEHOLDER,
+    title: "Amber Student Copilot",
+    linkToBuild: "https://github.com/agarwaladarshcoding-maker/Amber-Student-Chatbot",
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/Amber-Student-Chatbot",
+    image: `${BASE}/images/projects/amber-copilot.svg`,
     summary:
-      "A conversational housing assistant for international students, grounded against five live API endpoints with guardrails so a hallucinated property or price cannot reach the user. 70B agent + 8B router, four memory layers.",
-    technologies: [tech("Python"), tech("FastAPI"), tech("Llama 3.3"), tech("Redis")],
+      "A student-housing assistant constrained to answer only from five confirmed API endpoints plus a small policy knowledge base, with human-in-the-loop escalation. Grounding is the architecture, not a prompt instruction, so a hallucinated property or price cannot reach the user.",
+    technologies: [tech("Python"), tech("FastAPI"), tech("Redis")],
   },
   {
-    _id: "pairs-trading",
-    title: "Mean-Reverting Pairs Trading",
-    linkToBuild: `${GH}/Project-Section/tree/main/Quant-Finance-Project/Mean%20Reverting%20Pairs`,
-    sourceLink: `${GH}/Project-Section/tree/main/Quant-Finance-Project/Mean%20Reverting%20Pairs`,
-    image: PLACEHOLDER,
+    _id: "agentic-knowledge",
+    title: "Agentic Knowledge Chatbot",
+    linkToBuild: "https://github.com/agarwaladarshcoding-maker/Agentic-Knowledge-Chatbot",
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/Agentic-Knowledge-Chatbot",
+    image: `${BASE}/images/projects/agentic-knowledge.svg`,
     summary:
-      "Statistical arbitrage on real market data: rolling OLS for the hedge ratio and an Augmented Dickey-Fuller test deciding whether a spread is stationary enough to trade.",
-    technologies: [tech("Python"), tech("Pandas"), tech("statsmodels")],
+      "A local-first agentic assistant (voice and text) over your own files, Gmail and databases. Hybrid BM25 + vector retrieval, chunking, reranking and anti-hallucination checks. Runs on Ollama and Chroma, so nothing leaves the machine.",
+    technologies: [tech("Python"), tech("ChromaDB")],
+  },
+  {
+    _id: "ml-from-scratch",
+    title: "ML From Scratch",
+    linkToBuild: "https://github.com/agarwaladarshcoding-maker/ml-from-scratch",
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/ml-from-scratch",
+    image: `${BASE}/images/projects/ml-from-scratch.svg`,
+    summary:
+      "Classical machine learning implemented from first principles in NumPy with no scikit-learn, so the derivation has to be right. PCA from the SVD up, linear regression and more.",
+    technologies: [tech("Python")],
   },
   {
     _id: "order-book",
     title: "HFT Order Matching Engine",
-    linkToBuild: `${GH}/High-Frequency-Order-Book`,
-    sourceLink: `${GH}/High-Frequency-Order-Book`,
-    image: PLACEHOLDER,
-    summary: "A low-latency limit order book in modern C++17 (in progress).",
+    linkToBuild: "https://github.com/agarwaladarshcoding-maker/High-Frequency-Order-Book",
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/High-Frequency-Order-Book",
+    image: `${BASE}/images/projects/order-book.svg`,
+    summary:
+      "A limit order book and matching engine in C++17 executing on price-time priority with partial and full fills. std::map price levels keep the book ordered and per-level vectors preserve arrival order.",
     technologies: [tech("C++")],
+  },
+  {
+    _id: "pairs-trading",
+    title: "Mean-Reverting Pairs Trading",
+    linkToBuild: "https://github.com/agarwaladarshcoding-maker/Project-Section/tree/main/Quant-Finance-Project/Mean%20Reverting%20Pairs",
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/Project-Section/tree/main/Quant-Finance-Project/Mean%20Reverting%20Pairs",
+    image: `${BASE}/images/projects/pairs-trading.svg`,
+    summary:
+      "Statistical arbitrage on real market data: rolling OLS for the hedge ratio and an Augmented Dickey-Fuller test deciding whether the spread is stationary enough to trade. The test is allowed to say no.",
+    technologies: [tech("Python"), tech("Pandas"), tech("statsmodels")],
+  },
+  {
+    _id: "monte-carlo",
+    title: "Monte Carlo Barrier Pricer",
+    linkToBuild: "https://github.com/agarwaladarshcoding-maker/Monte-Carlo-Project-Simulator",
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/Monte-Carlo-Project-Simulator",
+    image: `${BASE}/images/projects/monte-carlo.svg`,
+    summary:
+      "Prices down-and-out barrier call options under Geometric Brownian Motion. 252 discrete steps per path so the barrier is monitored properly, Mersenne Twister and early exit on breach.",
+    technologies: [tech("Python"), tech("NumPy")],
+  },
+  {
+    _id: "portfolio-optimiser",
+    title: "Algorithmic Portfolio Manager",
+    linkToBuild: "https://github.com/agarwaladarshcoding-maker/Algorithmic_Portfolio_Manager",
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/Algorithmic_Portfolio_Manager",
+    image: `${BASE}/images/projects/portfolio-optimiser.svg`,
+    summary:
+      "Modern Portfolio Theory optimiser over 20+ tickers: 5,000 Monte Carlo portfolios, the efficient frontier, max-Sharpe and min-volatility allocations and 95% Value at Risk.",
+    technologies: [tech("Python"), tech("Pandas")],
   },
 ];
