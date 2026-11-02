@@ -12,7 +12,7 @@ export default function Projects({ projects }: Props) {
       transition={{ duration: 1.5 }}
       className=" h-screen relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0"
     >
-      <h3 className="absolute top-20 md:top-24 uppercase tracking-[20px] text-gray-500 text-xl md:text-2xl">
+      <h3 className="absolute top-20 md:top-24 uppercase tracking-[20px] text-gray-400 text-xl md:text-2xl">
         Projects
       </h3>
 
@@ -34,14 +34,14 @@ export default function Projects({ projects }: Props) {
 
             <div className="space-y-3 md:space-y-5 px-0 md:px-10 max-w-6xl">
               <h4 className="text-lg md:text-2xl lg:text-4xl font-semibold text-center">
-                <span className="underline decoration-darkGreen/50">
+                <span className="underline decoration-lightGreen/50">
                   Project {i + 1}:
                 </span>{" "}
                 <a
                   href={project?.linkToBuild}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-darkGreen"
+                  className="hover:text-lightGreen"
                 >
                   {project?.title}
                 </a>
@@ -65,7 +65,7 @@ export default function Projects({ projects }: Props) {
                   href={project.sourceLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-center underline decoration-darkGreen/50 hover:text-darkGreen"
+                  className="block text-center underline decoration-lightGreen/50 hover:text-lightGreen"
                 >
                   Source code ↗
                 </a>

@@ -40,7 +40,7 @@ export interface Experience {
 export interface Project {
   _id: string;
   title: string;
-  linkToBuild: string;
+  linkToBuild?: string;
   sourceLink?: string;
   image: Image;
   summary: string;

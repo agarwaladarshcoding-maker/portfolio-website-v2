@@ -12,6 +12,8 @@ module.exports = {
         darkGreen: "#2C6975",
         lightBackground: "#F8F8F8",
         darkBackground: "#22262D",
+        night: "#15181D",
+        nightCard: "#1E232A",
         darkBlack: "#000000",
         grayColor: "#22262D",
         yellowColor: "FFE033",

@@ -25,6 +25,7 @@ const DEVICON: Record<string, string> = {
   express: "express/express-original",
   electron: "electron/electron-original",
   fastapi: "fastapi/fastapi-original",
+  sqlite: "sqlite/sqlite-original",
   redis: "redis/redis-original",
   pandas: "pandas/pandas-original",
   "scikit-learn": "scikitlearn/scikitlearn-original",
@@ -145,6 +146,16 @@ export const projects: Project[] = [
     summary:
       "A phone helpline that tells people which Indian government schemes they are entitled to. Callers speak in their own language or use the keypad, answer a handful of questions and hear the schemes they qualify for. They can also send a photo of a crop or document by SMS, and missed calls get the answer back as an SMS with text and a sound link. Built for people with feature phones: no app, no internet, no reading. Scheme content is read verbatim from a database so the model never invents a benefit.",
     technologies: [tech("Python"), tech("FastAPI"), tech("Twilio"), tech("Supabase")],
+  },
+  {
+    _id: "lockout",
+    title: "Lockout Bot",
+    linkToBuild: "https://github.com/agarwaladarshcoding-maker/lockout-bot",
+    sourceLink: "https://github.com/agarwaladarshcoding-maker/lockout-bot",
+    image: `${BASE}/images/projects/lockout.svg`,
+    summary:
+      "A Discord bot that runs 1v1 Codeforces Lockout matches for a college knockout tournament. Each match has five problems from the chosen rating up to +400, and the first accepted submission on Codeforces claims a problem and locks the opponent out of it. Players prove they own their handle by submitting a compile error to a set problem, problems are drawn only from ones neither player has ever attempted (Div. 1/Div. 2 twins matched by name), and the bot polls the rate-limited Codeforces API with a grace period for submissions still in the judging queue. Level scores go to a fresh tie-breaker problem. Separate competition and practice rooms, admin commands, SQLite storage and 62 offline tests.",
+    technologies: [tech("Python"), tech("Discord.py"), tech("SQLite")],
   },
   {
     _id: "medical-rag",
